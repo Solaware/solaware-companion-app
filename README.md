@@ -9,7 +9,7 @@ This is a development repository for the `Solaware Companion App` which provides
 The current stable release is in the `main` branch.
 
 ### Setting up Development Environment
-Clone the repository onto a directory and cd into it.
+Clone the repository onto `solaware-companion-app` directory and `cd` into it.
 ```Bash
 git clone https://github.com/Solaware/solaware-companion-app.git
 cd solaware-companion-app
