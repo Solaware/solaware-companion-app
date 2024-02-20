@@ -9,7 +9,13 @@ This is a development repository for the `Solaware Companion App` which provides
 The current stable release is in the `main` branch.
 
 ### To team:
+#### Setting up dev environment
+Make sure node is installed. Download
+```Bash
+# 
 
+
+#### Adding New Features
 To develop a new feature for the `Solaware Companion App` please create a new branch that has split from the `dev` branch. Once your changes are complete, submit a `pull request` by pushing to a new feature branch in the remote repository. You can create a `pull request` by following the prompts. Once your changes have been reviewed we can merge to `dev`.
 
 To create a new branch from the `dev` branch, first make sure your current branch is `dev`:
