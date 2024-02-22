@@ -55,14 +55,14 @@ Then, create a new branch from `dev`:
 
 ```Bash
 # Create new branch
-git checkout -b dev/<new-feature>
+git checkout -b <new-feature>
 ```
 
 Once you have completed your changes in this branch, submit a `pull request` by pushing to a remote repo for this specific branch:
 
 ```Bash
 # Push to new branch in remote
-git push -u origin dev/<new-feature
+git push -u origin <new-feature
 ```
 
 Once your changes have been reviewed we can merge to `dev` on GitHub web.
