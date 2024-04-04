@@ -1,21 +1,15 @@
+import React from 'react'
+import Tabs from './screens/Tabs'
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text> Another feature. </Text>
-      <Text> This is Vanshika's new feature. </Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Tabs />
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
