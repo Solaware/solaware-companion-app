@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function HomePage() {
+export default function AboutPage() {
     return (
       <View>
-        <Text> about page </Text>
+        <Text> About Page </Text>
       </View>
     );
   }

@@ -9,6 +9,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
+import AboutPage from './screens/settings/AboutPage.js';
+
 var image = require('./images/LoginPage.png');
 const Stack = createNativeStackNavigator();
 
@@ -24,10 +26,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Tabs />
+    // </NavigationContainer>
 
+    <AboutPage/>
   );
 }
 
