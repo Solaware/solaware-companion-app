@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import OnboardingPage from './OnboardingPage.js';
 import LoginPage from './LoginPage.js';
-import CreateAccountStack from './CreateAccountStack.js';
+import CreateAccountStack from './CreateAccountPage.js';
 
 const Stack = createNativeStackNavigator();
 
