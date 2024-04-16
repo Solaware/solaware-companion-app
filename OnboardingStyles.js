@@ -18,10 +18,21 @@ export const styles = {
         marginRight: 82,
         marginTop: 30,
     },
+    SubpageTitleText: {
+        fontFamily: 'Tinos Bold', 
+        fontSize: 50,
+        color: '#08325D',
+        marginLeft: 42,
+        marginRight: 82,
+        marginTop: 0,
+        alignItems: 'center',
+        
+    },
     ButtonText: {
         fontFamily: 'Open Sans', 
         fontSize: 20,
         color: 'white',
+        fontWeight: 700,
     },
     ButtonStyle: {
         backgroundColor: '#08325D',
@@ -29,7 +40,7 @@ export const styles = {
         padding: 6,
         borderRadius: 10,
         display: 'flex',
-        width: 330,
+        width: 366,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',

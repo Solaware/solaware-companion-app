@@ -9,6 +9,7 @@ import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 import AuthorizingStack from './screens/accountCreation/AuthorizingStack';
+import AppStack from './screens/home/AppStack';
 
 var image = require('./images/LoginPage.png');
 
@@ -25,8 +26,8 @@ export default function App() {
 
   return (
       <NavigationContainer>
+        {/* <AppStack /> */}
         <AuthorizingStack /> 
-       {/* <Tabs /> */}
       </NavigationContainer>
       
   );
