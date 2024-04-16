@@ -1,17 +1,14 @@
-import React from 'react'
-import Tabs from './screens/Tabs'
+import React, {useContext} from 'react'
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 
 import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 import AuthorizingStack from './screens/accountCreation/AuthorizingStack';
-import AppStack from './screens/home/AppStack';
-
-var image = require('./images/LoginPage.png');
+import Tabs from './screens/Tabs';
+import {AuthContext, AuthProvider} from './screens/AuthContext';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,15 +17,18 @@ export default function App() {
     'Tinos Bold': require('./assets/fonts/Tinos/Tinos-Bold.ttf'),
   })
 
+  // const {isLoading, userToken} = useContext(AuthContext);
+
   if (!fontsLoaded) {
     return <AppLoading/>
   }
 
   return (
-      <NavigationContainer>
-        {/* <AppStack /> */}
-        <AuthorizingStack /> 
-      </NavigationContainer>
-      
+
+      <AuthProvider> 
+        <NavigationContainer>
+          <AuthorizingStack /> 
+        </NavigationContainer>
+      </AuthProvider>
   );
 }

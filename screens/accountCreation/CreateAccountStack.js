@@ -11,7 +11,7 @@ import MEDInfoPage from './MEDInfoPage.js';
 
 const Stack = createNativeStackNavigator();
 
-export default function CreateAccountPage() {
+export default function CreateAccountStack() {
   return ( 
     <Stack.Navigator> 
         <Stack.Screen name= "AccountSetup" component = {AccountSetupPage} options = {{headerShown: false}}/> 
