@@ -18,6 +18,7 @@ import Tabs from '../Tabs.js';
 
 export default function LoginPage({navigation}) {
   const {login} = useContext(AuthContext);
+
   return (
     <SafeAreaView style = {{flex:1}}> 
       <ImageBackground source={image2} resizeMode="cover" style={{flex: 1, width: 430, height: 935, opacity: 1, position: 'absolute',justifyContent: 'center',}}>
@@ -49,7 +50,7 @@ export default function LoginPage({navigation}) {
           </View>
           <View style = {{flex: 1, alignItems: 'center', bottom: 245, position: 'absolute', marginLeft: 32}}> 
             <TouchableOpacity style = {styles.ButtonStyle}
-              onPress = {() => navigation.goBack}> 
+              onPress = {() => navigation.goBack()}> 
               <Text style = {styles.ButtonText}> Go Back </Text>
             </TouchableOpacity>
           </View>

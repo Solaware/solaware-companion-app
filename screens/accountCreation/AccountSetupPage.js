@@ -53,7 +53,7 @@ export default function AccountSetupPage({navigation}) {
             </View>
             <View style = {{flex: 1, alignItems: 'center', bottom: 206, position: 'absolute', marginLeft: 32}}> 
                 <TouchableOpacity style = {styles.ButtonStyle}
-                onPress = {() => navigation.goBack}> 
+                onPress = {() => navigation.goBack()}> 
                 <Text style = {styles.ButtonText}> Go Back </Text>
                 </TouchableOpacity>
             </View>

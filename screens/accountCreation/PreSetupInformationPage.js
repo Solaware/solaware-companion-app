@@ -37,7 +37,7 @@ export default function PreSetupInformationPage({navigation}) {
             </View>
             <View style = {{flex: 1, alignItems: 'center', bottom: 50, position: 'absolute', marginLeft: 32}}> 
                 <TouchableOpacity style = {styles.ButtonStyle}
-                onPress = {() => navigation.goBack}> 
+                onPress = {() => navigation.goBack()}> 
                 <Text style = {styles.ButtonText}> Go Back </Text>
                 </TouchableOpacity>
             </View>

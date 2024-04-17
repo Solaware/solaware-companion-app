@@ -25,7 +25,7 @@ export default OnboardingScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style = {styles.ButtonStyle}
-          onPress = {() => navigation.navigate('Login')}>
+          onPress = {() => navigation.navigate('LoginStack')}>
             <Text style = {styles.ButtonText}>
               Sign In
             </Text>
