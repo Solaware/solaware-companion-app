@@ -16,7 +16,7 @@ import AppNav from './screens/AppNav';
 export default function App() {
   let [fontsLoaded] = useFonts({
     'Tinos Regular': require('./assets/fonts/Tinos/Tinos-Regular.ttf'),
-    'Open Sans': require('./assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf'),
+    'Open Sans': require('./assets/fonts/Open_Sans/OpenSans-Semibold.ttf'),
     'Tinos Bold': require('./assets/fonts/Tinos/Tinos-Bold.ttf'),
   })
 

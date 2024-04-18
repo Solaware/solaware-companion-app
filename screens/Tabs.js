@@ -2,7 +2,7 @@ import React from 'react'
 
 import HomePage from './home/HomePage'
 import DevicesPage from './home/DevicesPage'
-import SettingsPage from './home/SettingsPage'
+import SettingsStack from './settings/SettingsStack'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet, Text, View , TouchableOpacity, ImageBackground} from 'react-native'
@@ -79,7 +79,7 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name = {'Settings'} component = {SettingsPage}
+                name = {'Settings'} component = {SettingsStack}
                 options={{
                     tabBarIcon: ({focused}) => (
                         <MaterialCommunityIcons name="account" size={40} color={focused ? 'black' : '#258DFB'} style={{ marginTop: 15}} />
