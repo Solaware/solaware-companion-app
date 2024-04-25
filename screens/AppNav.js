@@ -10,22 +10,23 @@ import AppLoading from 'expo-app-loading';
 
 import AuthorizingStack from './accountCreation/AuthorizingStack';
 import Tabs from './Tabs';
-import {AuthContext, AuthProvider} from './AuthContext';
+import { auth } from '../config';
+import useAuth from './AuthContext'
 
 export default function AppNav() {
-  const {isLoading, userToken} = useContext(AuthContext);
+  // const {isLoading, userToken} = useContext(AuthContext);
+  const {user} = useAuth(); 
 
-  if (isLoading) {
-    <View style= {{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-      <ActivityIndicator size = {'large'} />
-    </View>
-  }
+  // if (isLoading) {
+  //   <View style= {{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+  //     <ActivityIndicator size = {'large'} />
+  //   </View>
+  // }
 
   return (
     <NavigationContainer>
-        {userToken !== null ? <Tabs /> : <AuthorizingStack/>} 
+        {user !== null ? <Tabs /> : <AuthorizingStack/>} 
         <StatusBar style="auto" />
     </NavigationContainer>
   );
-  // NOTE - this doesn't store login state once exiting the app
 }

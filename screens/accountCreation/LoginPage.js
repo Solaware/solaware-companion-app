@@ -1,12 +1,14 @@
-import React, {useContext} from 'react'
+import React, {useState} from 'react'
 import 'react-native-gesture-handler';
+
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import { auth } from '../../config.js';
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 
 import {styles} from '../../OnboardingStyles.js';
-import {AuthContext, AuthProvider} from '../AuthContext';
 
 var image2 = require('../../images/LoginPage.png');
 
@@ -17,7 +19,18 @@ import OnboardingPage from './OnboardingPage.js';
 import Tabs from '../Tabs.js';
 
 export default function LoginPage({navigation}) {
-  const {login} = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async () => {
+      if(email && password) {
+          try {
+              await signInWithEmailAndPassword(auth, email, password)
+          } catch (e) {
+              console.log('handleSubmit error: ', e.message);
+          }
+      }
+  }
 
   return (
     <SafeAreaView style = {{flex:1}}> 
@@ -31,20 +44,22 @@ export default function LoginPage({navigation}) {
             <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 25, 
             marginHorizontal: 20, marginTop: 30, borderColor: 'white'}}> 
               <Entypo name="email" size={18} color="white" style={{ marginTop: 5, marginRight: 10, marginBottom: 5}} />
-              <TextInput placeholder='Email' placeholderTextColor="white" keyboardType = "email-address" 
+              <TextInput value = {email} onChangeText = {value => setEmail(value)}
+              placeholder='Email' placeholderTextColor="white" keyboardType = "email-address" autoCapitalize="none"
               style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white', fontSize: 18}}/> 
             </View>
             <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 25, 
             marginHorizontal: 20, borderColor: 'white'}}> 
               <Entypo name="lock" size={18} color="white" style={{ marginTop: 10, marginRight: 10, marginBottom: 5}} />
-              <TextInput placeholder='Password' placeholderTextColor="white" keyboardType = "default"
+              <TextInput value = {password} onChangeText = {value => setPassword(value)} 
+              placeholder='Password' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
               style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
             </View>
           </View> 
 
           <View style = {{flex: 1, alignItems: 'center', bottom: 305, position: 'absolute', left: 16, right: 16}}> 
             <TouchableOpacity style = {styles.ButtonStyle}
-              onPress = {() => {login()}}> 
+              onPress = {handleSubmit}> 
               <Text style = {styles.ButtonText}> Sign In </Text>
             </TouchableOpacity>
           </View>

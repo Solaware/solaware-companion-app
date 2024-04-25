@@ -1,16 +1,8 @@
-import React, {useContext} from 'react'
-
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native'
-
-import {View, ActivityIndicator} from 'react-native';
+import React from 'react'
 
 import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
-import AuthorizingStack from './screens/accountCreation/AuthorizingStack';
-import Tabs from './screens/Tabs';
-import {AuthContext, AuthProvider} from './screens/AuthContext';
 import AppNav from './screens/AppNav';
 
 export default function App() {
@@ -25,8 +17,6 @@ export default function App() {
   }
 
   return (
-      <AuthProvider> 
-        <AppNav/>
-      </AuthProvider>
+      <AppNav/>
   );
 }

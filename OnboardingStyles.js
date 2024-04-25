@@ -45,6 +45,33 @@ export const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
+    },
+    ListItems: {
+        shadowColor: '#000000',
+        shadowOpacity: .15,
+        shadowRadius: 8,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        width: 360,
+        height: 150,
+        marginBottom: 8,
+        marginTop: 8,
+        flexDirection: 'row',
+
+        backgroundColor: 'white',
+        padding: 10,
+
+    }, 
+    ListText: {
+        fontFamily: 'Open Sans', 
+        fontSize: 17,
+        color: '#08325D',
+        fontWeight: 700,
+        textAlign: 'center',
+        
     }
     
 }

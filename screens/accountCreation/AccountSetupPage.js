@@ -1,19 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'react-native-gesture-handler';
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 
+import { createUserWithEmailAndPassword } from 'firebase/auth'; 
+import { auth } from '../../config.js'
+
 var image = require('../../images/LoginPage.png');
 
 import {styles} from '../../OnboardingStyles.js';
-import {AuthContext, AuthProvider} from '../AuthContext';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
 export default function AccountSetupPage({navigation}) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [userName, setName] = useState('');
+
+    const handleSubmit = async () => {
+        if(userName && email && password) {
+          navigation.navigate('PreSetupInformation', { userName, email, password });
+        }
+    }
+
     return (
         <SafeAreaView style = {{flex:1}}> 
           <ImageBackground source={image} resizeMode="cover" style={{flex: 1, width: 430, height: 935, opacity: 1, position: 'absolute',justifyContent: 'center',}}>
@@ -25,29 +37,32 @@ export default function AccountSetupPage({navigation}) {
                 <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 0, 
                 marginHorizontal: 20, marginTop: 18, borderColor: 'white'}}> 
                     <MaterialCommunityIcons name="account" size={22} color="white" style={{ marginTop: 5, marginRight: 10, marginBottom: 5}} />
-                    <TextInput placeholder='Name' placeholderTextColor="white" keyboardType = "default"
+                    <TextInput value = {userName} onChangeText={value => setName(value)}
+                    placeholder='Name' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
                     style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
                 </View>
 
                 <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 19, 
                 marginHorizontal: 20, marginTop: 23, borderColor: 'white'}}> 
                     <Entypo name="email" size={18} color="white" style={{ marginTop: 5, marginRight: 10, marginBottom: 5}} />
-                    <TextInput placeholder='Email' placeholderTextColor="white" keyboardType = "email-address" 
+                    <TextInput value = {email} onChangeText={value => setEmail(value)}
+                    placeholder='Email' placeholderTextColor="white" keyboardType = "email-address" autoCapitalize="none"
                     style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white', fontSize: 18}}/> 
                 </View>
 
                 <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 25, 
                 marginHorizontal: 20, borderColor: 'white'}}> 
                     <Entypo name="lock" size={18} color="white" style={{ marginTop: 10, marginRight: 10, marginBottom: 5}} />
-                    <TextInput placeholder='Password' placeholderTextColor="white" keyboardType = "default"
+                    <TextInput value = {password} onChangeText={value => setPassword(value)}
+                    placeholder='Password' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
                     style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
                 </View>
 
             </View> 
 
             <View style = {{flex: 1, alignItems: 'center', bottom: 266, position: 'absolute', left: 16, right: 16}}> 
-                <TouchableOpacity style = {styles.ButtonStyle}
-                onPress = {() => navigation.navigate('PreSetupInformation')}> 
+                <TouchableOpacity style = {styles.ButtonStyle} onPress = {() => handleSubmit()} >
+                {/* onPress = {() => navigation.navigate('PreSetupInformation')}>  */}
                 <Text style = {styles.ButtonText}> Create Account </Text>
                 </TouchableOpacity>
             </View>
