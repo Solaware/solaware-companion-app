@@ -28,7 +28,9 @@ const AboutPage = () => {
             <TouchableOpacity onPress={handleBackPress} style={styles.iconButton}>
               {/* <Image source={backIcon} style={styles.icon} /> */}
             </TouchableOpacity>
-            <Text style={{fontSize: 30, fontFamily: 'Open Sans', marginLeft: 16, fontWeight: 700,}}>About</Text>
+            <Text style={{fontSize: 30, fontFamily: 'Tinos Bold', marginLeft: 16, fontWeight: 700,}}>
+              About
+            </Text>
           </View>
 
           <ScrollView style={styles.scrollView}>
