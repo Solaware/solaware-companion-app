@@ -58,7 +58,7 @@ export default function PreSetupInformationPage({navigation, route}) {
                 </Text>
             </View>
 
-            <View style = {{flex: 3, alignItems: 'center'}}>
+            <View style = {{flex: 1, alignItems: 'center'}}>
                 <FlatList data = {fitzpatrickOptions} renderItem = {renderListItem} keyExtractor={item => item.id} />
             </View>
 
