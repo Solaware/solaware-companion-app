@@ -1,16 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, Image} from 'react-native';
 import solawareData from './AboutPageInfo.json';
 
-// Placeholder for navigation icons
-//const backIcon = require('../../assets/back.png'); // Replace with your actual back icon
-//const separatorImage = require('../../assets/line.png');
-
+var backIcon = require('../../images/icons8-back-96 1.png'); 
 var image = require('../../images/HomePage.png');
 
-const AboutPage = () => {
-  // Placeholder functions for handling button presses
-  const handleBackPress = () => console.log('Back pressed');
+export default function AboutPage({navigation}) {
 
   const aboutUsText = solawareData.AboutUs;
   const medBasisText = solawareData.DailyUVDosageAlgorithm.MED_Basis;
@@ -20,64 +15,59 @@ const AboutPage = () => {
   const DeviceOperationText = solawareData.DeviceOperation;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ImageBackground source={image} resizeMode="cover" style={{flex: 1, width: 430, height: 935, opacity: 1, position: 'absolute',justifyContent: 'center',}}>
+    <SafeAreaView style={{flex:1, flexDirection: 'column'}}>
+      <ImageBackground source={image} resizeMode="cover" style={{flex: 1, width: 430, height: 935, opacity: 1, position: 'absolute',justifyContent: 'center'}}>
 
-        <View style={styles.container}> 
-          <View style={styles.header}>
-            <TouchableOpacity onPress={handleBackPress} style={styles.iconButton}>
-              {/* <Image source={backIcon} style={styles.icon} /> */}
+          <View style={{height: '8%', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginTop: 120, marginLeft: 20}}> 
+            <TouchableOpacity onPress = {() => navigation.goBack()} style={styles.iconButton}>
+              <Image source={backIcon} style={{width: 42, height: 42}} />
             </TouchableOpacity>
-            <Text style={{fontSize: 30, fontFamily: 'Tinos Bold', marginLeft: 16, fontWeight: 700,}}>
+            <Text style={{fontSize: 30, fontFamily: 'Open Sans', marginLeft: 5, fontWeight: 700, color: '#08325D',}}>
               About
             </Text>
           </View>
 
-          <ScrollView style={styles.scrollView}>
-            <View style={styles.introContainer}>
-              <Text style={styles.introText}>
-                Interested in learning more about our product?
+          <Text style={{fontFamily: 'Tinos Bold', fontSize: 32, marginTop: 15, marginLeft: 30, marginRight: 70, marginBottom: 15, color: '#08325D',}}>
+              Interested in learning more about our product? 
+          </Text>
+          <Text style={{fontFamily: 'Open Sans', fontSize: 18, fontWeight: 700, marginLeft: 30, marginBottom: 25, color: '#258DFB'}}>
+              Scroll to find out more!
+          </Text>
+
+          <ScrollView style={{height: '80%', marginLeft: 25, marginRight: 25, padding: 5, marginBottom: 150, borderTopColor: '#FADA6C', borderTopWidth: 3}}>
+
+            <View>
+              <Text style={styles.sectionTitle}>About Solaware </Text> 
+              <Text style={{fontSize: 15, fontFamily: 'Open Sans', marginVertical: 10, marginLeft: 12, marginRight: 3, color: '#08325D'}}> 
+                {aboutUsText}
               </Text>
-              <Text style={styles.subText}>
-                Scroll to find out more!
+            </View>
+
+            <View>
+              <Text style={styles.sectionTitle}>How do we calculate your UV Dosage? </Text>
+              
+              <Text style={{ fontSize: 20, fontFamily: 'Tinos Bold', color: '#08325D', marginTop: 10, marginBottom: 7}}>
+                Daily UV Dosage Algorithm
+              </Text>
+                
+              <Text style={styles.subtext}>{medBasisText} </Text>
+              <Text style={styles.subtext}>{DataCollectionText} </Text>
+              <Text style={styles.subtext}>{SunscreenUsageText} </Text>
+
+              <Text style={{ fontSize: 20, fontFamily: 'Tinos Bold', color: '#08325D', marginTop: 10, marginBottom: 10}}>
+                Cumulative Exposure Algorithm
+              </Text>
+              <Text style={styles.subtext}>{CumulativeExposureAlgorithmText} </Text>
+            </View>
+
+            <View>
+              <Text style={styles.sectionTitle}>How does our device work? </Text>
+              <Text style={{fontSize: 15, fontFamily: 'Open Sans', marginVertical: 10, marginLeft: 12, marginRight: 3, color: '#08325D'}}>
+                {DeviceOperationText}
               </Text>
             </View>
 
-            <View style={styles.infoContainer}>
-              <Text style={styles.infoTitle}>About Solaware</Text>
-              <Text style={styles.bodyText}>{aboutUsText}</Text>
-            </View>
-
-            <View style={styles.infoContainer}>
-              <Text style={styles.infoTitle}>How we calculate your Daily UV Dosage?</Text>
-              <Text style={styles.infoSubtitle}>Daily UV Dosage Algorithm</Text>
-              <View style={styles.bulletPointLine}>
-                <Text style={styles.bulletPoint}>-</Text>
-                <Text style={styles.bodyText}>{medBasisText}</Text>
-              </View>
-              <View style={styles.bulletPointLine}>
-                <Text style={styles.bulletPoint}>-</Text>
-                <Text style={styles.bodyText}>{DataCollectionText}</Text>
-              </View>
-              <View style={styles.bulletPointLine}>
-                <Text style={styles.bulletPoint}>-</Text>
-                <Text style={styles.bodyText}>{SunscreenUsageText}</Text>
-              </View>
-              <Text style={styles.infoSubtitle}>Cumulative Exposure Algorithm</Text>
-              <View style={styles.bulletPointLine}>
-                <Text style={styles.bulletPoint}>-</Text>
-                <Text style={styles.bodyText}>{CumulativeExposureAlgorithmText}</Text>
-              </View>
-              <Text style={styles.infoSubtitle}>UV Index</Text>
-            </View>
-
-            <View style={styles.infoContainer}>
-              <Text style={styles.infoTitle}>How our device works?</Text>
-              <Text style={styles.bodyText}>{DeviceOperationText}</Text>
-            </View>
-
-          </ScrollView>
-        </View>
+        </ScrollView>
 
       </ImageBackground>
     </SafeAreaView>
@@ -85,80 +75,13 @@ const AboutPage = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#ffffff', 
-  },
-  container: {
-    flex: 1,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-  },
   iconButton: {
     width: 50, 
     height: 50, 
     justifyContent: 'center', 
     alignItems: 'center', 
   },  
-  icon: {
-    width: 40, 
-    height: 40, 
-  },
-  scrollView: {
-    padding: 16,
-  },
-  introContainer: {
-    paddingHorizontal: 10, 
-    paddingVertical: 10,   
-  },
-  introText: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subText: {
-    fontSize: 18,
-  },
-  infoContainer: {
-    marginBottom: 24,
-    paddingHorizontal: 10, 
-    paddingVertical: 10
-  },
-  infoTitle: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  infoContent: {
-    fontSize: 18,
-  },
-  bulletPointLine: {
-    flexDirection: 'row', // Align bullet and text in one line
-    alignItems: 'top',
-  },
-  bulletPoint: {
-    marginLeft: 12,
-    fontSize: 30, // Match font size with the text or adjust as needed
-    color: 'black', // Bullet color
-  },
-  bodyText: {
-    marginLeft: 12,
-    marginRight: 10,
-    marginTop: 7,
-    fontSize: 18,
-    flex: 1, // Take up all space available after accounting for the bullet
-  },
-  infoSubtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 9,
-    marginBottom: 3,
-    marginLeft: 3
-   
-},
-});
+  sectionTitle: {fontSize: 25,  marginTop: 10, fontFamily: 'Tinos Bold', color: '#08325D', marginTop: 25},
+  subtext: {fontSize: 15, fontFamily: 'Open Sans', marginVertical: 6, marginLeft: 12, marginRight: 3, color: '#08325D'},
 
-export default AboutPage;
+});
