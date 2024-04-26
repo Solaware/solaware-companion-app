@@ -9,7 +9,6 @@ import {styles} from '../../OnboardingStyles.js';
 
 var image3 = require('../../images/LoginPage.png');
 
-
 export default OnboardingScreen = ({navigation}) => {
     return (
         <SafeAreaView style = {{flex:1}}>

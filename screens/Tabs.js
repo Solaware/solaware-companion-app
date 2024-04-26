@@ -5,7 +5,7 @@ import DevicesPage from './home/DevicesPage'
 import SettingsStack from './settings/SettingsStack'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { StyleSheet, Text, View , TouchableOpacity, ImageBackground} from 'react-native'
+import { StyleSheet, View , TouchableOpacity, ImageBackground} from 'react-native'
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';

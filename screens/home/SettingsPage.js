@@ -1,19 +1,12 @@
 import React from 'react'
 
-import { StyleSheet, Text, View, SafeAreaView, ImageBackground, TouchableOpacity, FlatList, Image} from 'react-native';
-
-import About from '../settings/AboutPage'
-import AcctSettings from '../settings/AcctSettingsPage'
-import HealthInfo from '../settings/HealthInfoPage'
-import NotifsManager from '../settings/NotifsManagerPage'
-import Sunscreen from '../settings/SunscreenPage'
+import { Text, View, SafeAreaView, ImageBackground, TouchableOpacity, FlatList, Image} from 'react-native';
 
 import {styles} from '../../SettingsStyles.js'
 
 var image = require('../../images/HomePage.png');
 var icon = require('../../images/next_icon.png');
-var image2 = require('../../images/LoginPage.png'); //temporary
-
+var image2 = require('../../images/LoginPage.png'); 
 
 export default function SettingsPage({navigation}) {
 

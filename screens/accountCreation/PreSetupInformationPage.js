@@ -3,6 +3,7 @@ import 'react-native-gesture-handler';
 
 import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, FlatList, Alert} from 'react-native';
 
+//firebase imports
 import { createUserWithEmailAndPassword } from 'firebase/auth'; 
 import { setDoc, doc } from 'firebase/firestore'; 
 import { auth , database} from '../../config.js'

@@ -7,14 +7,10 @@ import { auth } from '../../config.js';
 import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
 
 import {styles} from '../../OnboardingStyles.js';
+import { Entypo } from '@expo/vector-icons';
 
 var image2 = require('../../images/LoginPage.png');
 
-import { Entypo } from '@expo/vector-icons';
-
-import HomePage from '../home/HomePage.js';
-import OnboardingPage from './OnboardingPage.js';
-import Tabs from '../Tabs.js';
 
 export default function LoginPage({navigation}) {
   const [email, setEmail] = useState('');

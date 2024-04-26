@@ -3,13 +3,11 @@ import 'react-native-gesture-handler';
 
 import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
 
-
-var image = require('../../images/LoginPage.png');
-
 import {styles} from '../../OnboardingStyles.js';
-
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+
+var image = require('../../images/LoginPage.png');
 
 export default function AccountSetupPage({navigation}) {
     const [email, setEmail] = useState('');
