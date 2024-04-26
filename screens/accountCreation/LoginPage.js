@@ -4,9 +4,7 @@ import 'react-native-gesture-handler';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../../config.js';
 
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
+import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
 
 import {styles} from '../../OnboardingStyles.js';
 
@@ -29,6 +27,17 @@ export default function LoginPage({navigation}) {
           } catch (e) {
               console.log('handleSubmit error: ', e.message);
           }
+      } else {
+        Alert.alert(
+          'Alert',
+          'Please fill out all fields',
+          [
+              {
+                  text: 'OK',
+              },
+          ],
+          {cancelable: false}
+      );
       }
   }
 
@@ -51,7 +60,7 @@ export default function LoginPage({navigation}) {
             <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 25, 
             marginHorizontal: 20, borderColor: 'white'}}> 
               <Entypo name="lock" size={18} color="white" style={{ marginTop: 10, marginRight: 10, marginBottom: 5}} />
-              <TextInput value = {password} onChangeText = {value => setPassword(value)} 
+              <TextInput value = {password} onChangeText = {value => setPassword(value)} secureTextEntry={true} 
               placeholder='Password' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
               style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
             </View>

@@ -1,9 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'react-native-gesture-handler';
 
-import { StatusBar } from 'expo-status-bar';
-import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, FlatList} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
+import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, FlatList, Alert} from 'react-native';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'; 
 import { auth } from '../../config.js'
@@ -15,14 +13,34 @@ import {styles} from '../../OnboardingStyles.js';
 export default function PreSetupInformationPage({navigation, route}) {
     const { userName, email, password } = route.params;
 
-    const handleSubmit = async () => {
-        if(userName && email && password) { //add questionnaire param as well
+    const handleSubmit = async (selectedButtonData) => {
+        if(userName && email && password && selectedButtonData) { //add questionnaire param as well
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
             } catch (e) {
                 console.log('handleSubmit error: ', e.message);
             }
+        } else {
+            Alert.alert(
+                'Alert',
+                'Please select an option',
+                [
+                    {
+                        text: 'OK',
+                    },
+                ],
+                {cancelable: false}
+            );
         }
+    };
+
+    const [selectedButton, setSelectedButton] = useState(null);
+    const [selectedButtonData, setSelectedButtonData] = useState(null);
+
+    const handlePress = (buttonId, data) => {
+        setSelectedButton(buttonId);
+        setSelectedButtonData(data); //store data as variable 
+        console.log(data);
     }
 
     const fitzpatrickOptions = [
@@ -41,7 +59,8 @@ export default function PreSetupInformationPage({navigation, route}) {
     ];
 
     const renderListItem = ({item}) => (
-        <TouchableOpacity style = {styles.ListItems}> 
+        <TouchableOpacity style = {[styles.ListItems, {backgroundColor: selectedButton === item.id ? '#FADA6C' : 'white'}]}
+        onPress = {() => handlePress(item.id, item)} underlayColor = '#FADA6C'> 
             <Text style = {{fontFamily: 'Tinos Bold', fontSize: 40, color: '#08325D', fontWeight: 700, marginRight: 30, marginLeft: 15}}> 
                 {item.type} 
             </Text>
@@ -58,13 +77,13 @@ export default function PreSetupInformationPage({navigation, route}) {
                 </Text>
             </View>
 
-            <View style = {{flex: 1, alignItems: 'center'}}>
+            <View style = {{flex: 2, alignItems: 'center', marginBottom: 190}}>
                 <FlatList data = {fitzpatrickOptions} renderItem = {renderListItem} keyExtractor={item => item.id} />
             </View>
 
             <View style = {{flex: 1, alignItems: 'center', bottom: 80, position: 'absolute', left: 16, right: 16}}> 
                 <TouchableOpacity style = {styles.ButtonStyle}
-                onPress = {() => handleSubmit()}> 
+                onPress = {() => handleSubmit(selectedButtonData)}> 
                 <Text style = {styles.ButtonText}> Next </Text>
                 </TouchableOpacity>
             </View>

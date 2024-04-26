@@ -47,13 +47,15 @@ export const styles = {
         marginBottom: 20,
     },
     ListItems: {
-        shadowColor: '#000000',
+        shadowColor: '#FADA6C',
         shadowOpacity: .15,
         shadowRadius: 8,
         marginHorizontal: 10,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        borderColor: '#FADA6C',
+        borderWidth: 3,
 
         width: 360,
         height: 150,
@@ -71,6 +73,7 @@ export const styles = {
         color: '#08325D',
         fontWeight: 700,
         textAlign: 'center',
+        paddingRight: 10
         
     }
     

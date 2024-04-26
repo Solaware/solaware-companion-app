@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import 'react-native-gesture-handler';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'; 
@@ -23,6 +23,28 @@ export default function AccountSetupPage({navigation}) {
     const handleSubmit = async () => {
         if(userName && email && password) {
           navigation.navigate('PreSetupInformation', { userName, email, password });
+        } else if (userName && email && !password) {
+            Alert.alert(
+                'Alert',
+                'Password should have at least 8 characters',
+                [
+                    {
+                        text: 'OK',
+                    },
+                ],
+                {cancelable: false}
+            );
+        } else {
+            Alert.alert(
+                'Alert',
+                'Please fill in all fields',
+                [
+                    {
+                        text: 'OK',
+                    },
+                ],
+                {cancelable: false}
+            );
         }
     }
 
@@ -53,7 +75,7 @@ export default function AccountSetupPage({navigation}) {
                 <View style = {{flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 8, marginBottom: 25, 
                 marginHorizontal: 20, borderColor: 'white'}}> 
                     <Entypo name="lock" size={18} color="white" style={{ marginTop: 10, marginRight: 10, marginBottom: 5}} />
-                    <TextInput value = {password} onChangeText={value => setPassword(value)}
+                    <TextInput value = {password} onChangeText={value => setPassword(value)} secureTextEntry={true} 
                     placeholder='Password' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
                     style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
                 </View>
