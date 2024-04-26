@@ -12,6 +12,9 @@ import Tabs from './screens/Tabs';
 import useAuth from './screens/AuthContext';
 
 export default function App() {
+  //set up authorizing with firebase
+    const {user} = useAuth(); 
+
   //load fonts
   let [fontsLoaded] = useFonts({
     'Tinos Regular': require('./assets/fonts/Tinos/Tinos-Regular.ttf'),
@@ -23,8 +26,6 @@ export default function App() {
     return <AppLoading/>
   }
 
-  //set up authorizing with firebase
-  const {user} = useAuth(); 
 
   return (
     <NavigationContainer>
