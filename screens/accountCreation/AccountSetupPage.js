@@ -1,12 +1,8 @@
 import React, {useState} from 'react'
 import 'react-native-gesture-handler';
 
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
+import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ImageBackground, Alert} from 'react-native';
 
-import { createUserWithEmailAndPassword } from 'firebase/auth'; 
-import { auth } from '../../config.js'
 
 var image = require('../../images/LoginPage.png');
 
@@ -60,7 +56,7 @@ export default function AccountSetupPage({navigation}) {
                 marginHorizontal: 20, marginTop: 18, borderColor: 'white'}}> 
                     <MaterialCommunityIcons name="account" size={22} color="white" style={{ marginTop: 5, marginRight: 10, marginBottom: 5}} />
                     <TextInput value = {userName} onChangeText={value => setName(value)}
-                    placeholder='Name' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
+                    placeholder='First Name' placeholderTextColor="white" keyboardType = "default" autoCapitalize="none"
                     style = {{flex: 1, paddingVertical: 0, fontFamily: 'Open Sans', color: 'white',fontSize: 18}}/> 
                 </View>
 

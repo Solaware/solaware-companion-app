@@ -4,7 +4,8 @@ import 'react-native-gesture-handler';
 import { Text, View, SafeAreaView, TouchableOpacity, ImageBackground, FlatList, Alert} from 'react-native';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'; 
-import { auth } from '../../config.js'
+import { setDoc, doc } from 'firebase/firestore'; 
+import { auth , database} from '../../config.js'
 
 var image = require('../../images/HomePage.png');
 
@@ -14,9 +15,23 @@ export default function PreSetupInformationPage({navigation, route}) {
     const { userName, email, password } = route.params;
 
     const handleSubmit = async (selectedButtonData) => {
-        if(userName && email && password && selectedButtonData) { //add questionnaire param as well
+        if(userName && email && password && selectedButtonData) {
+            const id = parseInt(selectedButtonData.id);
+            const estimatedMED = parseInt(selectedButtonData.estimatedMED);
+
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
+                const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredentials.user;
+
+                //set user data in firestore
+                const userRef = doc(database, 'UserData', user.uid);
+                await setDoc(userRef, {
+                    email: user.email,
+                    firstName: userName,
+                    fitzpatrickType: id,
+                    estimatedMED: estimatedMED
+                });
+                console.log(user.uid);
             } catch (e) {
                 console.log('handleSubmit error: ', e.message);
             }
