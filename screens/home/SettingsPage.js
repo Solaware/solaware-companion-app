@@ -6,7 +6,7 @@ import {styles} from '../../SettingsStyles.js'
 
 var image = require('../../images/HomePage.png');
 var icon = require('../../images/next_icon.png');
-var image2 = require('../../images/LoginPage.png'); 
+var image2 = require('../../images/user.png'); 
 
 export default function SettingsPage({navigation, route}) {
     const { userData } = route.params; 
@@ -24,7 +24,7 @@ export default function SettingsPage({navigation, route}) {
             <Text style = {styles.ListText}> {item.title} </Text>
             <Image source = {icon} style = {{height: 28, width: 28, marginRight: 10, marginTop: 7}}/>
         </TouchableOpacity>
-    )
+    ) 
 
     return (
         <SafeAreaView>

@@ -47,15 +47,15 @@ export default function HealthInfo({navigation, route}) {
           </View>
 
         <View style = {{flexDirection: 'column', flex: 4}}>
-          <TouchableOpacity style={styles.container2} onPress = {handlePress()}> 
-              <Text style={styles.text3} > Log medications </Text>
+          <TouchableOpacity style={styles.container2} onPress = {handlePress}> 
+              <Text style={styles.text3} > Your medications </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.container2} onPress = {handlePress()}> 
-              <Text style={styles.text3} > Log photosensitive conditions </Text>
+          <TouchableOpacity style={styles.container2} onPress = {handlePress}> 
+              <Text style={styles.text3} > Your photosensitive conditions </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.container2} onPress = {handlePress()}> 
+          <TouchableOpacity style={styles.container2} onPress = {handlePress}> 
               <Text style={styles.text3} > Send data to your doctor </Text>
           </TouchableOpacity>
         </View>

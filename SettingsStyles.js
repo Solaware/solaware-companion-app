@@ -13,6 +13,7 @@ export const styles = {
         height: 180,
         width: 180,
         borderRadius: 90,
+        borderWidth: 4,
     },
     ListItems: {
         backgroundColor: 'white',

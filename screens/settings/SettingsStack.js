@@ -19,7 +19,7 @@ export default function SettingsStack({route}) {
     <Stack.Navigator initialRouteName="SettingsPage"> 
         <Stack.Screen name= "SettingsPage" component = {SettingsPage} initialParams={{ userData }} options = {{headerShown: false}}/> 
         <Stack.Screen name= "About" component = {About} options = {{headerShown: false}}/> 
-        <Stack.Screen name= "AcctSettings" component = {AcctSettings} initialParams={{ userData }} options = {{headerShown: false}}/>
+        <Stack.Screen name= "AcctSettings" component = {AcctSettings} options = {{headerShown: false}}/>
         <Stack.Screen name= "HealthInfo" component = {HealthInfo} initialParams={{ userData }} options = {{headerShown: false}}/> 
         <Stack.Screen name= "NotifsManager" component = {NotifsManager} options = {{headerShown: false}}/> 
         <Stack.Screen name= "Sunscreens" component = {Sunscreens} options = {{headerShown: false}}/>  
