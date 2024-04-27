@@ -1,10 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 export default function AcctSettingsPage() {
     return (
-      <View>
-        <Text> acct setting page </Text>
-      </View>
+      <SafeAreaView>
+        <View>
+          <Text> acct setting page </Text>
+        </View>
+      </SafeAreaView>
     );
   }

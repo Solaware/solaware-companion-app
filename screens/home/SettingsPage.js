@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { Text, View, SafeAreaView, ImageBackground, TouchableOpacity, FlatList, Image} from 'react-native';
 
@@ -8,7 +8,8 @@ var image = require('../../images/HomePage.png');
 var icon = require('../../images/next_icon.png');
 var image2 = require('../../images/LoginPage.png'); 
 
-export default function SettingsPage({navigation}) {
+export default function SettingsPage({navigation, route}) {
+    const { userData } = route.params; 
 
     const settingsListItems = [
         {id: '1', title: 'Your Sunscreens', link: 'Sunscreens'},
@@ -30,7 +31,7 @@ export default function SettingsPage({navigation}) {
             <ImageBackground source={image} resizeMode="cover" style={{flex: 1, width: 430, height: 935, opacity: 1, position: 'absolute',justifyContent: 'flex-start',}}> 
 
             <View style = {{marginBottom: 20}}> 
-                <Text style= {styles.SettingsTitle}>User's Name </Text>
+                <Text style= {styles.SettingsTitle}>{userData.firstName} </Text>
             </View>
 
             <View style = {{alignItems: 'center', marginBottom: 30}}>

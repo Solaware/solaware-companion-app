@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 import HomePage from './home/HomePage'
 import DevicesPage from './home/DevicesPage'
 import SettingsStack from './settings/SettingsStack'
+import useAuth from './AuthContext'
+
+import { doc, getDoc } from 'firebase/firestore';
+import { database } from '../config.js'; 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { StyleSheet, View , TouchableOpacity, ImageBackground} from 'react-native'
+import { StyleSheet, View , TouchableOpacity, ImageBackground, ActivityIndicator} from 'react-native'
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
+
 const CustomTabButton = ({children, onPress}) => ( //for center tab button
     <TouchableOpacity
         onPress = {onPress}
@@ -36,9 +41,36 @@ const CustomTabButton = ({children, onPress}) => ( //for center tab button
 )
 
 const Tabs = () => {
-    
-    return (
+    //fetch user data
+    const { user, init } = useAuth();
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        if (init) {
+        const fetchData = async () => {
+            try {
+                const userRef = doc(database, 'UserData', user.uid);
+                const userDoc = await getDoc(userRef);
+                if(userDoc.exists()) {
+                    const userData = userDoc.data();
+                    setUserData(userData);
+                }
+                setLoading(false);
+            } catch (error) {
+                console.log("error fetching data", error );
+            }
+        };
+  
+        fetchData();
+        console.log(userData);
+    }}, [user, init]);
+
+    if (loading) {
+        return <ActivityIndicator size = "large" color="#FADA6C" style = {{flex: 1}}/>
+    }
+  
+    return (
         <Tab.Navigator
             screenOptions = {{
                 tabBarShowLabel: false,
@@ -79,7 +111,7 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name = {'Settings'} component = {SettingsStack}
+                name = {'Settings'} initialParams={{ userData }} component = {SettingsStack}
                 options={{
                     tabBarIcon: ({focused}) => (
                         <MaterialCommunityIcons name="account" size={40} color={focused ? 'black' : '#258DFB'} style={{ marginTop: 15}} />

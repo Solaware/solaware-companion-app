@@ -13,7 +13,7 @@ import useAuth from './screens/AuthContext';
 
 export default function App() {
   //set up authorizing with firebase
-    const {user} = useAuth(); 
+  const {user} = useAuth(); 
 
   //load fonts
   let [fontsLoaded] = useFonts({
@@ -24,7 +24,7 @@ export default function App() {
 
   if (!fontsLoaded) {
     return <AppLoading/>
-  }
+  } 
 
 
   return (
