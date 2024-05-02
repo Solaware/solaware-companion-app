@@ -1,73 +1,86 @@
-import React from 'react'
-import Tabs from './screens/Tabs'
+import React, { useState } from 'react';
+import { StyleSheet, View, Button, Alert, TextInput, Text } from 'react-native';
+import * as Notifications from 'expo-notifications';
 
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ImageBackground } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import {useFonts} from 'expo-font';
-import AppLoading from 'expo-app-loading';
-
-import AboutPage from './screens/settings/AboutPage.js';
-
-var image = require('./images/LoginPage.png');
-const Stack = createNativeStackNavigator();
+// Setting up notification handling behaviors
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    'Tinos Regular': require('./assets/fonts/Tinos/Tinos-Regular.ttf'),
-    'Open Sans': require('./assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf'),
-    'Tinos Bold': require('./assets/fonts/Tinos/Tinos-Bold.ttf'),
-  })
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerDuration, setTimerDuration] = useState(10); // SET TIMER HERE
 
-  if (!fontsLoaded) {
-    return <AppLoading/>
+  // Function to request permission and retrieve the push token
+  async function registerForPushNotificationsAsync() {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      Alert.alert('Failed to get push token for push notification!');
+      return;
+    }
+    const token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log("Push token:", token);
   }
 
-  return (
-    // <NavigationContainer>
-    //   <Tabs />
-    // </NavigationContainer>
+  // Function to start the timer and trigger notification after specified duration
+  const handleTimerStart = () => {
+    setTimerActive(true);
+    setTimeout(() => {
+      sendNotification();
+      setTimerActive(false);
+    }, timerDuration * 1000); // Convert seconds to milliseconds
+  };
 
-    <AboutPage/>
+  // Function to trigger an immediate notification
+  async function sendNotification() {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Hello!",
+        body: 'This is a test notification',
+      },
+      trigger: null, // triggers immediately
+    });
+  }
+
+  // Main component rendering buttons to register and send notifications
+  return (
+    <View style={styles.container}>
+      <Button
+        title="Register for Notifications"
+        onPress={registerForPushNotificationsAsync}
+      />
+      <Button
+        title={timerActive ? 'Timer Running...' : `Start Timer (${timerDuration} seconds)`}
+        onPress={handleTimerStart}
+        disabled={timerActive}
+      />
+    </View>
   );
 }
 
+// Styles for the app
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-  },
-  TitleText: {
-    fontFamily: 'Tinos Bold', 
-    fontSize: 50,
-    color: '#08325D',
-    marginLeft: 42,
-    marginRight: 82,
-    marginTop: 30,
-  },
-  ButtonText: {
-    fontFamily: 'Open Sans', 
-    fontSize: 20,
-    color: 'white',
-  },
-  ButtonStyle: {
-    backgroundColor: '#08325D',
-    opacity: .9,
-    padding: 6,
-    borderRadius: 10,
-    display: 'flex',
-    width: 330,
-    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
-  }
+    backgroundColor: '#F5FCFF',
+  },
+  input: {
+    height: 40,
+    width: 200,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
 });
-
