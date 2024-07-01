@@ -20,7 +20,7 @@ export default function App() {
   //load fonts
   let [fontsLoaded] = useFonts({
     'Tinos Regular': require('./assets/fonts/Tinos/Tinos-Regular.ttf'),
-    'Open Sans': require('./assets/fonts/Open_Sans/OpenSans-Semibold.ttf'),
+    'Open Sans': require('./assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf'),
     'Tinos Bold': require('./assets/fonts/Tinos/Tinos-Bold.ttf'),
   })
 
@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
   },
   blackText: {
     color: 'black',
+    fontFamily: 'Open Sans',
+    fontSize: 20,
   },
 });
 
