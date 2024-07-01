@@ -1,8 +1,8 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, Alert } from 'react-native';
 
-var backIcon = require('../../images/icons8-back-96 1.png'); 
-var image = require('../../images/HomePage.png');
+var backIcon = require('../../assets/icons/back.png'); 
+var image = require('../../assets/images/HomePage.png');
 
 export default function HealthInfo({navigation, route}) {
   const { userData } = route.params; 

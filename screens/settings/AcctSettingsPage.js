@@ -3,8 +3,8 @@ import { SafeAreaView, StyleSheet, Text, View, ImageBackground, Image, Touchable
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config';
 
-var backIcon = require('../../images/icons8-back-96 1.png'); 
-var image = require('../../images/HomePage.png');
+var backIcon = require('../../assets/icons/back.png'); 
+var image = require('../../assets/images/HomePage.png');
 
 export default function AcctSettingsPage({navigation}) {
 

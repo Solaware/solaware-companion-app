@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, Image} from 'react-native';
 import solawareData from './AboutPageInfo.json';
 
-var backIcon = require('../../images/icons8-back-96 1.png'); 
-var image = require('../../images/HomePage.png');
+var backIcon = require('../../assets/icons/back.png'); 
+var image = require('../../assets/images/HomePage.png');
 
 export default function AboutPage({navigation}) {
 
