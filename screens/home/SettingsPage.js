@@ -4,9 +4,9 @@ import { Text, View, SafeAreaView, ImageBackground, TouchableOpacity, FlatList, 
 
 import {styles} from '../../SettingsStyles.js'
 
-var image = require('../../images/HomePage.png');
-var icon = require('../../images/next_icon.png');
-var image2 = require('../../images/user.png'); 
+var image = require('../../assets/images/HomePage.png');
+var icon = require('../../assets/icons/next.png');
+var image2 = require('../../assets/icons/next.png'); 
 
 export default function SettingsPage({navigation, route}) {
     const { userData } = route.params; 
